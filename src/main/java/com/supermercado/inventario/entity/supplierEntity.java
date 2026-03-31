@@ -13,6 +13,7 @@ import lombok.Data;
 @Table(name = "suppliers")
 public class supplierEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id ;
