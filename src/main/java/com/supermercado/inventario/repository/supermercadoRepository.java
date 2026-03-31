@@ -1,5 +1,7 @@
 package com.supermercado.inventario.repository;
 
-public class supermercadoRepository {
-    
+import com.supermercado.inventario.entity.supermercadoEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface supermercadoRepository extends JpaRepository<supermercadoEntity, Long> {
 }
