@@ -1,0 +1,60 @@
+CREATE DATABASE supermercado; 
+USE supermercado;
+
+CREATE TABLE categories (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE products (
+    id int AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(100) NOT NULL,
+	barcode VARCHAR(100) UNIQUE NOT NULL,
+	price double NOT NULL,
+    stock int NOT NULL DEFAULT 0,
+    state BOOLEAN DEFAULT TRUE, 
+    categories_id int,
+    FOREIGN KEY (categories_id) REFERENCES categories(id)
+);
+
+CREATE TABLE suppliers (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    nit VARCHAR(50) UNIQUE NOT NULL,
+    name VARCHAR(20)
+);
+
+CREATE TABLE supplier_product (
+    product_id int NOT NULL,
+    supplier_id int NOT NULL,
+    PRIMARY KEY (product_id, supplier_id),
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
+);
+
+CREATE TABLE employee (
+    cc int PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    post varchar(100) NULL,
+    entry_date DATE NOT NULL,
+    salary double NOT NULL
+);
+
+CREATE TABLE sales (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    employee_cc int NOT NULL,
+    subtotal double NOT NULL,
+    iva double NOT NULL, 
+    total double NOT NULL,
+    FOREIGN KEY (employee_cc) REFERENCES employee(cc)
+);
+
+CREATE TABLE sales_details (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    sale_id int NOT NULL,
+    product_id int NOT NULL,
+    quantity INT NOT NULL,
+    price_unitary double NOT NULL,
+    FOREIGN KEY (sale_id) REFERENCES sales(id),
+    FOREIGN KEY (product_id) REFERENCES products (id)
+);
