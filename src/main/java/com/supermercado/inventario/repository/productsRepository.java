@@ -1,5 +1,6 @@
 package com.supermercado.inventario.repository;
 
-public class ventaRepository {
+public class productsRepository {
+
     
 }

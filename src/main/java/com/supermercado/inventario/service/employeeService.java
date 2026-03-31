@@ -1,5 +1,5 @@
 package com.supermercado.inventario.service;
 
-public class proveedorService {
+public class employeeService {
     
 }
